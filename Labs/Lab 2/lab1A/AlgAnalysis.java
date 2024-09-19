@@ -17,6 +17,9 @@
 // Revision 1.0  2015/09/14 01:20:40  lplant
 // Revision 1.1  2015/09/19 11:21:00  Lucia Moura
 // ==========================================================================
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -81,6 +84,37 @@ public class AlgAnalysis {
 		long start = System.nanoTime();
 		Unique1.unique1(arr);
 		return System.nanoTime() - start;
+	}
+
+	public static void uniqueTester(String filename, int base) {
+		try {
+			File file = new File(filename);
+			file.createNewFile();
+		} catch (IOException e) {
+			System.out.println("File name already exists.");
+		}
+		
+		try {
+			FileWriter writer = new FileWriter(filename);
+			int i = 1;
+			writer.write("unique1:\n");
+			while ((Math.pow(base, i) < Math.pow(2, 30)) && (nanoToSeconds(unique1Runtime((int) Math.pow(base, i))) < 60)) {
+				writer.write("\tn = " + Math.pow(base, i) + "\n");
+				i++;
+			}
+			writer.write("\t Largest size within 1 minute: n = " + Math.pow(base, i - 2));
+			i = 1;
+			writer.write("unique2:\n");
+			while ((Math.pow(base, i) < Math.pow(2, 30)) && (nanoToSeconds(unique2Runtime((int) Math.pow(base, i))) < 60)) {
+				writer.write("\tn = " + Math.pow(base, i) + "\n");
+				i++;
+			}
+			writer.write("\t Largest size within 1 minute: n = " + Math.pow(base, i - 2));
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -147,7 +181,7 @@ public class AlgAnalysis {
 			}
 			else if(opt1 == 1){
 				while(true){
-					System.out.println("Enter 1 to test unique1, 2 for unique2, any other number to exit");
+					System.out.println("Enter 1 to test unique1, 2 for unique2, 3 to test both, and any other number to exit");
 					int opt2 = scanner.nextInt();
 					if(opt2 == 1){
 						System.out.println("Enter n value");
@@ -160,6 +194,15 @@ public class AlgAnalysis {
 						int n = scanner.nextInt();
 						System.out.println("Time Elapsed: "+AlgAnalysis.nanoToSeconds(AlgAnalysis.unique2Runtime(n))+" secs");
 						System.out.println();
+					}
+					else if(opt2 == 3){
+						System.out.println("Enter a filename (with extension) to store the results");
+						String filename = scanner.next();
+						System.out.println("Enter a base size to test exponentially");
+						int base = scanner.nextInt();
+						System.out.println("Beginning test...");
+						uniqueTester(filename, base);
+						System.out.println("Test complete. Examine results in " + filename);
 					}
 					else{
 						System.out.println("End of Program!");
