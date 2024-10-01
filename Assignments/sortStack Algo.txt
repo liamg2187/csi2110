@@ -1,0 +1,16 @@
+Algorithm sortStack(Stack s):
+    Stack tempStack
+    int tmp
+
+    tempStack.push(s.pop())
+    while !s.isEmpty()
+        if s.peek() >= tempStack.peek()
+            tempStack.push(s.pop())
+        else
+            tmp = s.pop()
+            while !tempStack.isEmpty() and tmp < tempStack.peek()
+                s.push(tempStack.pop())
+            tempStack.push(tmp)
+    
+    while !tempStack.isEmpty()
+        s.push(tempStack.pop())

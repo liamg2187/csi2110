@@ -1,0 +1,21 @@
+Algorithm serve(int i):
+    if lineup is empty
+        throw error
+    
+    if i == 1
+        cashier1.setCustomer(lineup.removeFirst())
+    else if i == 2
+        cashier2.setCustomer(lineup.removeremoveFirst())
+
+Algorithm interruptService(int i):
+    if i == 1
+        lineup.addLast(cashier1.removeCustomer())
+    else if i == 2
+        lineup.addLast(cashier2.removeCustomer())
+
+Algorithm newCustomer(Customer p)
+    lineup.addLast(p)
+
+Algorithm giveUp(int n)
+    for i <- 0 to n do
+        lineup.removeLast()
