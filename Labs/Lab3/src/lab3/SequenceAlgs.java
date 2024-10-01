@@ -62,13 +62,11 @@ public class SequenceAlgs<E> {
 
         E tmp;
 
-        for (int i = 0; i < S.size(); i = i + k) {
-            for (int j = 0; j < k; j++) {
-                if (i + j > 0 && i + j < S.size() - 1) {
-                    tmp = S.get(i + j);
-                    S.set(S.positionAtIndex(i + j), S.get(i + k - j - 1));
-                    S.set(S.positionAtIndex(i + k - j - 1), tmp);
-                }
+        for (int i = 0; i < S.size() - k; i = i + k) {
+            for (int j = 0; j < k/2; j++) {
+                tmp = S.get(i + j);
+                S.set(S.positionAtIndex(i + j), S.get(i + k - j - 1));
+                S.set(S.positionAtIndex(i + k - j - 1), tmp);
 
             }
         }
