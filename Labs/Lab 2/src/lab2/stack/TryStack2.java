@@ -1,3 +1,5 @@
+package lab2.stack;
+
 public class TryStack2 {
 
     // Task: create tryStack2 which does the same as this class but uses a
