@@ -1,3 +1,6 @@
 [submodule "Assignments/csi2110_programmingAssignment1"]
 	path = Assignments/csi2110_programmingAssignment1
 	url = https://github.com/liamg2187/csi2110_programmingAssignment1
+[submodule "Assignments/csi2110_programmingAssignment2"]
+	path = Assignments/csi2110_programmingAssignment2
+	url = https://github.com/liamg2187/csi2110_programmingAssignment2
